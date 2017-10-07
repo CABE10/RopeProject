@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICreature.cs" />
+    <Compile Include="IGame.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
