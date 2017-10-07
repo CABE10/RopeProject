@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.Configuration;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,7 +22,7 @@ namespace RopeAssignment
             Initialize();
         }
         /// <summary>
-        /// This is where the game engine is initialized and timer set.
+        /// This is where the game engine is resolved, and timer set.
         /// </summary>
         protected virtual void Initialize()
         {
@@ -31,7 +33,17 @@ namespace RopeAssignment
                 defaultInterval = 750;//ms
             }
             this.MainTimer = new System.Timers.Timer();
-            this.GameEngine = new Game(10, 10);
+            //I know what you're thinking... Inversion of Control?!?
+            //I realize that it's totally overkill, but perhaps someone might want to inject another game with a different ruleset?
+            IUnityContainer container = new UnityContainer();
+            container.LoadConfiguration();
+
+            this.GameEngine = container.Resolve<IGame>(new ResolverOverride[]
+                                   {
+                                       new ParameterOverride("defaultLeftCount", 10),
+                                       new ParameterOverride("defaultRightCount", 10)
+                                   }); //10 monkeys jumping on the bed.
+
             this.MainTimer.Interval = defaultInterval;
             this.MainTimer.Elapsed += MainTimer_Elapsed;
             this.MainTimer.Start();
