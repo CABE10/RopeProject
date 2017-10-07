@@ -2,6 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RopeAssignment;
 using System.Linq;
+using Microsoft.Practices.Unity;
+
 namespace Tests
 {
     [TestClass]
@@ -108,8 +110,13 @@ namespace Tests
         [TestMethod]
         public void InjectableGameTest()
         {
-            //ill get to this one soon.
-            Assert.Fail("Placeholder");
+            //sanity test.
+            var container = new UnityContainer();
+            container.RegisterType<IGame, InjectableGame>();
+
+            IGame game = container.Resolve<IGame>();
+
+            Assert.IsTrue(game.CreaturesOnRopeCount == int.MinValue);
         }
 
     }

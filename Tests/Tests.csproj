@@ -75,6 +75,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="GameTests.cs" />
+    <Compile Include="InjectableGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
