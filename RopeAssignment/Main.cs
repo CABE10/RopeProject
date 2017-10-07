@@ -16,5 +16,15 @@ namespace RopeAssignment
         {
             InitializeComponent();
         }
+
+        protected virtual void btnAddLeftMonkey_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected virtual void btnAddRightMonkey_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
